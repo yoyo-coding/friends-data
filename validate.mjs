@@ -76,7 +76,7 @@ for (const file of files) {
   }
 
   let broken = false;
-  for (const key of ["name", "url", "backlink"]) {
+  for (const key of ["name", "url"]) {
     if (typeof data[key] !== "string" || !data[key].trim()) {
       errors.push(`${file}: 缺少必填字段 "${key}"`);
       broken = true;
@@ -85,7 +85,8 @@ for (const file of files) {
   if (broken) continue;
 
   if (!isHttpUrl(data.url)) errors.push(`${file}: url 不是合法的 http(s) 地址`);
-  if (!isHttpUrl(data.backlink)) errors.push(`${file}: backlink 不是合法的 http(s) 地址`);
+  // backlink 选填：提供时才做双向链接验证
+  if (data.backlink && !isHttpUrl(data.backlink)) errors.push(`${file}: backlink 不是合法的 http(s) 地址`);
   if (data.avatar && !isHttpUrl(data.avatar)) errors.push(`${file}: avatar 不是合法的 http(s) 地址`);
 
   if (seenUrls.has(data.url)) errors.push(`${file}: url 与 ${seenUrls.get(data.url)} 重复`);
