@@ -15,7 +15,7 @@
   "avatar": "https://你的头像URL（可选）",
   "description": "简短描述（可选）",
   "url": "https://你的网站URL",
-  "backlink": "https://你的网站/友链页（必填）"
+  "backlink": "https://你的网站/友链页（可选）"
 }
 ```
 
@@ -28,15 +28,14 @@
 | 规则 | 说明 |
 |---|---|
 | JSON 格式 | 必须是合法 JSON |
-| 必填字段 | `name`、`url`、`backlink` 必填且为合法 URL |
-| 双向链接 | 系统会访问你的 `backlink` 页面，确认其中包含指向 `https://yoyo-coding.github.io/me` 的链接 |
-| 唯一性 | `url` 不能与已有友链重复 |
+| 必填字段 | `name`、`url` 必填且为合法 URL |
+| 双向链接（可选） | 如果填写了 `backlink`，系统会访问该页面，确认其中包含指向 `https://yoyo-coding.github.io/me` 的链接 |
 
 双向链接验证通过后 PR 自动合并；未通过会自动关闭并附评论说明原因。
 
-## 先加上本站链接
+## 加上本站链接（推荐）
 
-请在你的网站合适位置（如友链页、关于页或页脚）先添加本站链接：
+如果你希望做双向友链，可在你的网站合适位置（如友链页、关于页或页脚）添加本站链接，并在 JSON 里填写 `backlink` 供自动验证：
 
 ```html
 <a href="https://yoyo-coding.github.io/me">执着yoyo</a>
@@ -48,7 +47,7 @@
 |---|---|---|
 | `name` | ✅ | 站点名称 |
 | `url` | ✅ | 站点首页地址 |
-| `backlink` | ✅ | 你放置本站链接的页面地址（用于双向验证） |
+| `backlink` | — | 你放置本站链接的页面地址（填写后自动做双向验证） |
 | `avatar` | — | 站点头像图片 URL，建议正方形 |
 | `description` | — | 一句话描述 |
 
